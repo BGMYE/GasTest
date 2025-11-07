@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.flowable.mapper.FlowInitiatorConfigMapper">
+    
+    <resultMap type="FlowInitiatorConfig" id="FlowInitiatorConfigResult">
+        <result property="id"    column="id"    />
+        <result property="deployId"    column="deploy_id"    />
+        <result property="procDefId"    column="proc_def_id"    />
+        <result property="procDefKey"    column="proc_def_key"    />
+        <result property="initiatorType"    column="initiator_type"    />
+        <result property="initiatorId"    column="initiator_id"    />
+        <result property="initiatorName"    column="initiator_name"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+    </resultMap>
+
+    <sql id="selectFlowInitiatorConfigVo">
+        select id, deploy_id, proc_def_id, proc_def_key, initiator_type, initiator_id, initiator_name, create_time, create_by, update_time, update_by from flow_initiator_config
+    </sql>
+
+    <select id="selectFlowInitiatorConfigList" parameterType="FlowInitiatorConfig" resultMap="FlowInitiatorConfigResult">
+        <include refid="selectFlowInitiatorConfigVo"/>
+        <where>  
+            <if test="deployId != null  and deployId != ''"> and deploy_id = #{deployId}</if>
+            <if test="procDefId != null  and procDefId != ''"> and proc_def_id = #{procDefId}</if>
+            <if test="procDefKey != null  and procDefKey != ''"> and proc_def_key = #{procDefKey}</if>
+            <if test="initiatorType != null "> and initiator_type = #{initiatorType}</if>
+            <if test="initiatorId != null  and initiatorId != ''"> and initiator_id = #{initiatorId}</if>
+            <if test="initiatorName != null  and initiatorName != ''"> and initiator_name like concat('%', #{initiatorName}, '%')</if>
+        </where>
+        order by create_time desc
+    </select>
+    
+    <select id="selectFlowInitiatorConfigById" parameterType="Long" resultMap="FlowInitiatorConfigResult">
+        <include refid="selectFlowInitiatorConfigVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectFlowInitiatorConfigByProcDefId" parameterType="String" resultMap="FlowInitiatorConfigResult">
+        <include refid="selectFlowInitiatorConfigVo"/>
+        where proc_def_id = #{procDefId}
+        order by create_time desc
+    </select>
+
+    <select id="selectFlowInitiatorConfigByProcDefKey" parameterType="String" resultMap="FlowInitiatorConfigResult">
+        <include refid="selectFlowInitiatorConfigVo"/>
+        where proc_def_key = #{procDefKey}
+        order by create_time desc
+    </select>
+
+    <select id="selectFlowInitiatorConfigByDeployId" parameterType="String" resultMap="FlowInitiatorConfigResult">
+        <include refid="selectFlowInitiatorConfigVo"/>
+        where deploy_id = #{deployId}
+        order by create_time desc
+    </select>
+        
+    <insert id="insertFlowInitiatorConfig" parameterType="FlowInitiatorConfig" useGeneratedKeys="true" keyProperty="id">
+        insert into flow_initiator_config
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="deployId != null and deployId != ''">deploy_id,</if>
+            <if test="procDefId != null and procDefId != ''">proc_def_id,</if>
+            <if test="procDefKey != null and procDefKey != ''">proc_def_key,</if>
+            <if test="initiatorType != null">initiator_type,</if>
+            <if test="initiatorId != null and initiatorId != ''">initiator_id,</if>
+            <if test="initiatorName != null and initiatorName != ''">initiator_name,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="deployId != null and deployId != ''">#{deployId},</if>
+            <if test="procDefId != null and procDefId != ''">#{procDefId},</if>
+            <if test="procDefKey != null and procDefKey != ''">#{procDefKey},</if>
+            <if test="initiatorType != null">#{initiatorType},</if>
+            <if test="initiatorId != null and initiatorId != ''">#{initiatorId},</if>
+            <if test="initiatorName != null and initiatorName != ''">#{initiatorName},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+         </trim>
+    </insert>
+
+    <update id="updateFlowInitiatorConfig" parameterType="FlowInitiatorConfig">
+        update flow_initiator_config
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="deployId != null and deployId != ''">deploy_id = #{deployId},</if>
+            <if test="procDefId != null and procDefId != ''">proc_def_id = #{procDefId},</if>
+            <if test="procDefKey != null and procDefKey != ''">proc_def_key = #{procDefKey},</if>
+            <if test="initiatorType != null">initiator_type = #{initiatorType},</if>
+            <if test="initiatorId != null and initiatorId != ''">initiator_id = #{initiatorId},</if>
+            <if test="initiatorName != null and initiatorName != ''">initiator_name = #{initiatorName},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteFlowInitiatorConfigById" parameterType="Long">
+        delete from flow_initiator_config where id = #{id}
+    </delete>
+
+    <delete id="deleteFlowInitiatorConfigByIds" parameterType="String">
+        delete from flow_initiator_config where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteFlowInitiatorConfigByProcDefId" parameterType="String">
+        delete from flow_initiator_config where proc_def_id = #{procDefId}
+    </delete>
+
+    <delete id="deleteFlowInitiatorConfigByDeployId" parameterType="String">
+        delete from flow_initiator_config where deploy_id = #{deployId}
+    </delete>
+
+</mapper>

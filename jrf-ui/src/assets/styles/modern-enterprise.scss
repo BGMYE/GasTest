@@ -1,0 +1,249 @@
+/**
+ * 企业级样式增强（简约版）
+ * 提供简洁、专业的用户体验
+ */
+
+// 简化动画效果
+// 页面加载动画
+.page-enter-active {
+  transition: opacity 0.15s ease;
+}
+
+.slide-enter-active {
+  transition: transform 0.15s ease;
+}
+
+// 企业级状态标签
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+
+  &.status-success {
+    background-color: #f0f9ff;
+    color: #059669;
+    border: 1px solid #bbf7d0;
+  }
+
+  &.status-warning {
+    background-color: #fffbeb;
+    color: #d97706;
+    border: 1px solid #fde68a;
+  }
+
+  &.status-error {
+    background-color: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+  }
+
+  &.status-info {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+  }
+}
+
+// 企业级数据卡片
+.data-card {
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  transition: all 0.15s ease;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: #2563eb;
+  }
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .data-title {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .data-value {
+    font-size: 24px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 4px;
+  }
+
+  .data-trend {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+
+    &.trend-up {
+      color: #059669;
+    }
+
+    &.trend-down {
+      color: #dc2626;
+    }
+  }
+}
+
+// 企业级搜索框
+.modern-search {
+  position: relative;
+
+  .el-input__inner {
+    padding-left: 36px;
+
+    &:focus {
+      background-color: #ffffff;
+    }
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    z-index: 10;
+  }
+}
+
+// 企业级工具栏
+.modern-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+  border: 1px solid #e5e7eb;
+
+  .toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+// 企业级面包屑
+.modern-breadcrumb {
+  padding: 12px 20px;
+  background: #ffffff;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+
+  .el-breadcrumb__inner {
+    color: #4b5563;
+    font-weight: 500;
+
+    &.is-link:hover {
+      color: #2563eb;
+    }
+  }
+}
+
+// 简化加载状态
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+
+  .loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid #f3f4f6;
+    border-top: 2px solid #2563eb;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 12px;
+  }
+
+  .loading-text {
+    color: #6b7280;
+    font-size: 14px;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// 简化空状态
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+
+  .empty-icon {
+    font-size: 48px;
+    color: #d1d5db;
+    margin-bottom: 12px;
+  }
+
+  .empty-title {
+    font-size: 16px;
+    color: #4b5563;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .empty-description {
+    font-size: 14px;
+    color: #6b7280;
+    text-align: center;
+    line-height: 1.5;
+  }
+}
+
+// 响应式优化
+@media (max-width: 768px) {
+  .app-container {
+    margin: 8px;
+    padding: 12px;
+  }
+
+  .modern-toolbar {
+    flex-direction: column;
+    gap: 8px;
+
+    .toolbar-left,
+    .toolbar-right {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .data-card {
+    padding: 16px;
+  }
+}
+
