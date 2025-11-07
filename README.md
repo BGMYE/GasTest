@@ -20,21 +20,21 @@
 
 1. **克隆项目**
    ```bash
-   git clone https://gitee.com/heqy65552335/ruoyi-plus.git
+   git clone https://gitee.com/iphone3/sxgpra.git
    ```
 
 2. **数据库配置**
-   - 创建数据库 `ruoyi-plus`
-   - 导入 `sql/ruoyi-flowable.sql` 文件
+   - 创建数据库 `jrf-plus`
+   - 导入 `sql/jrf.sql` 文件
 
 3. **修改配置**
-   - 编辑 `ruoyi-admin/src/main/resources/application-druid.yml`
+   - 编辑 `jrf-admin/src/main/resources/application-druid.yml`
    - 配置 MySQL 和 Redis 连接信息
 
 4. **启动应用**
    ```bash
    # 方式一：IDE 启动
-   运行 ruoyi-admin/src/main/java/com/ruoyi/RuoYiApplication.java
+   运行 jrf-admin/src/main/java/com/ruoyi/RuoYiApplication.java
    ```
 
 ### 前端启动
@@ -59,7 +59,7 @@
    mvn clean package -Dmaven.test.skip=true
    
    # 部署
-   java -jar ruoyi-admin.jar --spring.profiles.active=prod
+   java -jar jrf-admin.jar --spring.profiles.active=prod
    ```
 
 2. **前端部署**
@@ -97,4 +97,4 @@
 
 ### 开发规范
 
-- **代码组织**：新功能建议放在 `sxgpra` 模块下，便于代码管理和框架升级
+- **代码组织**：新功能建议放在 `jrf-sxgpra` 模块下，便于代码管理和框架升级
