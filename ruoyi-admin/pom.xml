@@ -65,7 +65,10 @@
             <groupId>com.ruoyi</groupId>
             <artifactId>ruoyi-flowable</artifactId>
         </dependency>
-
+		<dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>sxgpra</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
