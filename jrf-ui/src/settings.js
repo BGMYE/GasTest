@@ -6,7 +6,7 @@ export default {
   /**
    * 侧边栏主题 深色主题theme-dark，浅色主题theme-light
    */
-  sideTheme: 'theme-light',
+  sideTheme: 'theme-dark',
   /**
    * 是否系统布局配置
    */
@@ -30,7 +30,7 @@ export default {
   /**
    * 是否显示logo
    */
-  sidebarLogo: false,
+  sidebarLogo: true,
 
   /**
    * 是否显示动态标题
