@@ -8,8 +8,9 @@
       <div class="avatar-container">
         <el-dropdown @command="handleCommand" class="right-menu-item hover-effect" trigger="click">
           <div class="avatar-wrapper">
+            <span class="user-welcome">{{ userStore.nickName || userStore.name }} 欢迎您，</span>
             <el-icon class="user-icon"><user /></el-icon>
-            <span class="user-welcome">{{ userStore.nickName || userStore.name }} 欢迎登录管理系统</span>
+
             <el-icon><caret-bottom /></el-icon>
           </div>
           <template #dropdown>
@@ -87,7 +88,7 @@ function setLayout() {
   height: 50px;
   overflow: hidden;
   position: relative;
-  background: #fff;
+  background: #4A90E5;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
   .hamburger-container {
@@ -155,20 +156,20 @@ function setLayout() {
 
         .user-icon {
           font-size: 18px;
-          color: #606266;
+          color: #ffffff;
           margin-right: 8px;
         }
 
         .user-welcome {
           cursor: pointer;
-          color: #606266;
+          color: #ffffff;
           font-size: 14px;
           font-weight: 400;
           white-space: nowrap;
           transition: color 0.3s ease;
           
           &:hover {
-            color: #409eff;
+            color: #374151;
           }
         }
 
