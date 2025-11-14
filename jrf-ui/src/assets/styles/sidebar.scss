@@ -73,7 +73,7 @@
       
       .el-menu-item {
         &.is-active {
-          background: #2563eb !important;
+          //background: #2563eb !important;
           color: #ffffff !important;
           position: relative;
           
@@ -112,10 +112,10 @@
       transition: all 0.15s ease;
       border-radius: 6px;
       margin: 2px 8px;
-      
+      color:#ffffff;
       &:hover {
-        background: rgba(37, 99, 235, 0.1) !important;
-        color: #2563eb !important;
+        background: #4A90E5!important;
+        //color: #2563eb !important;
       }
     }
 
@@ -129,10 +129,10 @@
       transition: all 0.15s ease;
       border-radius: 6px;
       margin: 1px 8px;
-      
+      color:#ffffff !important;
       &:hover {
-        background: rgba(37, 99, 235, 0.1) !important;
-        color: #2563eb !important;
+        background: #4A90E5!important;
+        //color: #2563eb !important;
       }
     }
 
@@ -249,14 +249,14 @@
     transition: all 0.15s ease;
     border-radius: 6px;
     margin: 1px 8px;
-    
+    color:#ffffff !important;
     &:hover {
-      background: rgba(37, 99, 235, 0.1) !important;
-      color: #2563eb !important;
+      background: #4A90E5!important;
+     // color:#ffffff !important;
       
-      .svg-icon {
-        color: #2563eb !important;
-      }
+      //.svg-icon {
+        //color: #2563eb !important;
+     // }
     }
   }
 
