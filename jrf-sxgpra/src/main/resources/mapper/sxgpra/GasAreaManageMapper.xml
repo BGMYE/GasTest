@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxgpra.gasAreaManage.mapper.GasAreaManageMapper">
+    
+    <resultMap type="GasAreaManage" id="GasAreaManageResult">
+        <result property="areaManageId"    column="area_manage_id"    />
+        <result property="supervisionId"    column="supervision_id"    />
+        <result property="inspectionId"    column="inspection_id"    />
+        <result property="regionCode"    column="region_code"    />
+        <result property="regionName"    column="region_name"    />
+        <result property="createBy"    column="createBy"    />
+        <result property="createTime"    column="createTime"    />
+        <result property="updateBy"    column="updateBy"    />
+        <result property="updateTime"    column="updateTime"    />
+        <association property="supervisionDept"    javaType="SysDept"         resultMap="supervisionDeptResult" />
+        <association property="inspectionDept"    javaType="SysDept"         resultMap="inspectionDeptResult" />
+    </resultMap>
+
+    <resultMap id="supervisionDeptResult" type="SysDept">
+        <id     property="deptId"    column="supervision_dept_id"     />
+        <result property="parentId"  column="supervision_parent_id"   />
+        <result property="deptName"  column="supervision_dept_name"   />
+        <result property="ancestors" column="supervision_ancestors"   />
+        <result property="orderNum"  column="supervision_order_num"   />
+        <result property="leader"    column="supervision_leader"      />
+        <result property="status"    column="supervision_dept_status" />
+    </resultMap>
+
+    <resultMap id="inspectionDeptResult" type="SysDept">
+        <id     property="deptId"    column="inspection_dept_id"     />
+        <result property="parentId"  column="inspection_parent_id"   />
+        <result property="deptName"  column="inspection_dept_name"   />
+        <result property="ancestors" column="inspection_ancestors"   />
+        <result property="orderNum"  column="inspection_order_num"   />
+        <result property="leader"    column="inspection_leader"      />
+        <result property="status"    column="inspection_dept_status" />
+    </resultMap>
+
+    <sql id="selectGasAreaManageVo">
+        select am.area_manage_id, am.supervision_id, am.inspection_id, am.region_code, am.region_name, am.createBy, am.createTime, am.updateBy, am.updateTime,
+               sd.dept_name as  supervision_dept_name, sd.leader as supervision_leader,
+               id.dept_name as  inspection_dept_name, id.leader as inspection_leader
+        from gas_area_manage am
+        left join sys_dept sd on am.supervision_id = sd.dept_id
+        left join sys_dept id on am.inspection_id = id.dept_id
+    </sql>
+
+    <select id="selectGasAreaManageList" parameterType="GasAreaManage" resultMap="GasAreaManageResult">
+        <include refid="selectGasAreaManageVo"/>
+        <where>  
+            <if test="supervisionId != null "> and supervision_id = #{supervisionId}</if>
+            <if test="inspectionId != null "> and inspection_id = #{inspectionId}</if>
+            <if test="regionCode != null  and regionCode != ''"> and region_code = #{regionCode}</if>
+            <if test="regionName != null  and regionName != ''"> and region_name like concat('%', #{regionName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectGasAreaManageByAreaManageId" parameterType="Long" resultMap="GasAreaManageResult">
+        <include refid="selectGasAreaManageVo"/>
+        where area_manage_id = #{areaManageId}
+    </select>
+
+    <insert id="insertGasAreaManage" parameterType="GasAreaManage" useGeneratedKeys="true" keyProperty="areaManageId">
+        insert into gas_area_manage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="supervisionId != null">supervision_id,</if>
+            <if test="inspectionId != null">inspection_id,</if>
+            <if test="regionCode != null">region_code,</if>
+            <if test="regionName != null">region_name,</if>
+            <if test="createBy != null">createBy,</if>
+            <if test="createTime != null">createTime,</if>
+            <if test="updateBy != null">updateBy,</if>
+            <if test="updateTime != null">updateTime,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="supervisionId != null">#{supervisionId},</if>
+            <if test="inspectionId != null">#{inspectionId},</if>
+            <if test="regionCode != null">#{regionCode},</if>
+            <if test="regionName != null">#{regionName},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGasAreaManage" parameterType="GasAreaManage">
+        update gas_area_manage
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="supervisionId != null">supervision_id = #{supervisionId},</if>
+            <if test="inspectionId != null">inspection_id = #{inspectionId},</if>
+            <if test="regionCode != null">region_code = #{regionCode},</if>
+            <if test="regionName != null">region_name = #{regionName},</if>
+            <if test="createBy != null">createBy = #{createBy},</if>
+            <if test="createTime != null">createTime = #{createTime},</if>
+            <if test="updateBy != null">updateBy = #{updateBy},</if>
+            <if test="updateTime != null">updateTime = #{updateTime},</if>
+        </trim>
+        where area_manage_id = #{areaManageId}
+    </update>
+
+        <!-- 物理删除：不存在del_flag字段，使用物理删除 -->
+        <delete id="deleteGasAreaManageByAreaManageId" parameterType="Long">
+            delete from gas_area_manage where area_manage_id = #{areaManageId}
+        </delete>
+
+        <delete id="deleteGasAreaManageByAreaManageIds" parameterType="String">
+            delete from gas_area_manage where area_manage_id in
+            <foreach item="areaManageId" collection="array" open="(" separator="," close=")">
+                #{areaManageId}
+            </foreach>
+        </delete>
+</mapper>
