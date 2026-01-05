@@ -43,6 +43,13 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <!-- postgreSQL 驱动包 -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.18</version>
+        </dependency>
+
         <!-- 核心模块-->
         <dependency>
             <groupId>com.jrf</groupId>
