@@ -101,7 +101,7 @@
 
     <select id="selectDbTableList" parameterType="GenTable" resultMap="GenTableResult">
         select table_name, table_comment, create_time, update_time from information_schema.tables
-        where table_schema = (select database())
+        where table_schema = (select CURRENT_SCHEMA())
         AND table_name NOT LIKE 'qrtz\_%' AND table_name NOT LIKE 'gen\_%'
         AND table_name NOT IN (select table_name from gen_table)
         <if test="tableName != null and tableName != ''">
@@ -121,7 +121,7 @@
 
     <select id="selectDbTableListByNames" resultMap="GenTableResult">
         select table_name, table_comment, create_time, update_time from information_schema.tables
-        where table_name NOT LIKE 'qrtz\_%' and table_name NOT LIKE 'gen\_%' and table_schema = (select database())
+        where table_name NOT LIKE 'qrtz\_%' and table_name NOT LIKE 'gen\_%' and table_schema = (select CURRENT_SCHEMA())
         and table_name in
         <foreach collection="array" item="name" open="(" separator="," close=")">
             #{name}
@@ -132,7 +132,7 @@
         select table_name, table_comment, create_time, update_time
         from information_schema.tables
         where table_comment <![CDATA[ <> ]]> ''
-          and table_schema = (select database())
+          and table_schema = (select CURRENT_SCHEMA())
           and table_name = #{tableName}
     </select>
 
@@ -293,7 +293,7 @@
         <if test="genPath != null and genPath != ''">#{genPath},</if>
         <if test="remark != null and remark != ''">#{remark},</if>
         <if test="createBy != null and createBy != ''">#{createBy},</if>
-        sysdate()
+        now()
         )
     </insert>
 
@@ -322,7 +322,7 @@
             <if test="options != null and options != ''">options = #{options},</if>
             <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
             <if test="remark != null">remark = #{remark},</if>
-            update_time = sysdate()
+            update_time = now()
         </set>
         where table_id = #{tableId}
     </update>

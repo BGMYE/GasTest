@@ -35,7 +35,8 @@
 //        prop.put("org.quartz.jobStore.clusterCheckinInterval", "15000");
 //        prop.put("org.quartz.jobStore.maxMisfiresToHandleAtATime", "10");
 //        prop.put("org.quartz.jobStore.txIsolationLevelSerializable", "true");
-//
+//        //postgresql 启用
+//        prop.put("org.quartz.jobStore.driverDelegateClass","org.quartz.impl.jdbcjobstore.PostgreSQLDelegate");
 //        // sqlserver 启用
 //        // prop.put("org.quartz.jobStore.selectWithLockSQL", "SELECT * FROM {0}LOCKS UPDLOCK WHERE LOCK_NAME = ?");
 //        prop.put("org.quartz.jobStore.misfireThreshold", "12000");

@@ -40,7 +40,7 @@
     <select id="selectGoodsList" parameterType="Goods" resultMap="GoodsResult">
         <include refid="selectGoodsVo"/>
         <where>
-            del_flag = "0"
+            del_flag = 0
             <if test="goodsName != null  and goodsName != ''">and goods_name like concat('%', #{goodsName}, '%')</if>
             <if test="goodsType != null  and goodsType != ''">and goods_type = #{goodsType}</if>
             <if test="goodsPrice != null  and goodsPrice != ''">and goods_price = #{goodsPrice}</if>

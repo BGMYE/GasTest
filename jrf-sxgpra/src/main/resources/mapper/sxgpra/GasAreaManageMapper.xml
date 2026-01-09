@@ -10,10 +10,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="inspectionId"    column="inspection_id"    />
         <result property="regionCode"    column="region_code"    />
         <result property="regionName"    column="region_name"    />
-        <result property="createBy"    column="createBy"    />
-        <result property="createTime"    column="createTime"    />
-        <result property="updateBy"    column="updateBy"    />
-        <result property="updateTime"    column="updateTime"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
         <association property="supervisionDept"    javaType="SysDept"         resultMap="supervisionDeptResult" />
         <association property="inspectionDept"    javaType="SysDept"         resultMap="inspectionDeptResult" />
     </resultMap>
@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectGasAreaManageVo">
-        select am.area_manage_id, am.supervision_id, am.inspection_id, am.region_code, am.region_name, am.createBy, am.createTime, am.updateBy, am.updateTime,
+        select am.area_manage_id, am.supervision_id, am.inspection_id, am.region_code, am.region_name, am.create_by, am.create_time, am.update_by, am.update_time,
                sd.dept_name as  supervision_dept_name, sd.leader as supervision_leader,
                id.dept_name as  inspection_dept_name, id.leader as inspection_leader
         from gas_area_manage am
@@ -69,10 +69,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="inspectionId != null">inspection_id,</if>
             <if test="regionCode != null">region_code,</if>
             <if test="regionName != null">region_name,</if>
-            <if test="createBy != null">createBy,</if>
-            <if test="createTime != null">createTime,</if>
-            <if test="updateBy != null">updateBy,</if>
-            <if test="updateTime != null">updateTime,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="supervisionId != null">#{supervisionId},</if>
@@ -93,10 +93,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="inspectionId != null">inspection_id = #{inspectionId},</if>
             <if test="regionCode != null">region_code = #{regionCode},</if>
             <if test="regionName != null">region_name = #{regionName},</if>
-            <if test="createBy != null">createBy = #{createBy},</if>
-            <if test="createTime != null">createTime = #{createTime},</if>
-            <if test="updateBy != null">updateBy = #{updateBy},</if>
-            <if test="updateTime != null">updateTime = #{updateTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
         </trim>
         where area_manage_id = #{areaManageId}
     </update>
