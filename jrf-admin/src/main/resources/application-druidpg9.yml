@@ -7,9 +7,9 @@ spring:
     druid:
       # 主库数据源
       master:
-        url: jdbc:postgresql://127.0.0.1:5432/sx_gpra?currentSchema=gas&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
+        url: jdbc:postgresql://47.92.5.148:5432/sx_gpra?currentSchema=gas&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
         username: gas
-        password: xatu_523
+        password: xatu_305_gauss
       # 从库数据源
       slave:
         # 从数据源开关/默认关闭
