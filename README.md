@@ -13,7 +13,7 @@
 
 - 后端：Spring Boot 2.x、Flowable 6.x
 - 前端：Vue 3.x、Element Plus
-- 数据库：MySQL、MyBatis Plus
+- 数据库：openGauss、MyBatis Plus
 
 
 ### 后端启动
@@ -29,7 +29,7 @@
 
 3. **修改配置**
    - 编辑 `jrf-admin/src/main/resources/application-druid.yml`
-   - 配置 MySQL 和 Redis 连接信息
+   - 配置 openGauss 和 Redis 连接信息
 
 4. **启动应用**
    ```bash
