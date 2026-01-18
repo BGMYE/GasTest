@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxgpra.mapper.GasProjectNdtMapper">
+    
+    <resultMap type="GasProjectNdt" id="GasProjectNdtResult">
+        <result property="projectNdtId"    column="project_ndt_id"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="deptId"    column="dept_id"    />
+        <result property="ndtChargerId"    column="ndt_charger_id"    />
+        <result property="ndtDocumenterId"    column="ndt_documenter_id"    />
+        <result property="status"    column="status"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="testCertNo"    column="test_cert_no"    />
+    </resultMap>
+
+    <sql id="selectGasProjectNdtVo">
+        select project_ndt_id, project_id, dept_id, ndt_charger_id, ndt_documenter_id, status, del_flag, create_by, create_time, update_by, update_time, test_cert_no from gas_project_ndt
+    </sql>
+
+    <select id="selectGasProjectNdtList" parameterType="GasProjectNdt" resultMap="GasProjectNdtResult">
+        <include refid="selectGasProjectNdtVo"/>
+        <where>  
+            <if test="projectNdtId != null  and projectNdtId != ''"> and project_ndt_id = #{projectNdtId}</if>
+            <if test="projectId != null  and projectId != ''"> and project_id = #{projectId}</if>
+            <if test="deptId != null  and deptId != ''"> and dept_id = #{deptId}</if>
+            <if test="ndtChargerId != null  and ndtChargerId != ''"> and ndt_charger_id = #{ndtChargerId}</if>
+            <if test="ndtDocumenterId != null  and ndtDocumenterId != ''"> and ndt_documenter_id = #{ndtDocumenterId}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="testCertNo != null  and testCertNo != ''"> and test_cert_no = #{testCertNo}</if>
+        </where>
+    </select>
+    
+    <select id="selectGasProjectNdtByProjectNdtId" parameterType="String" resultMap="GasProjectNdtResult">
+        <include refid="selectGasProjectNdtVo"/>
+        where project_ndt_id = #{projectNdtId}
+    </select>
+
+    <insert id="insertGasProjectNdt" parameterType="GasProjectNdt">
+        insert into gas_project_ndt
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="projectNdtId != null">project_ndt_id,</if>
+            <if test="projectId != null">project_id,</if>
+            <if test="deptId != null">dept_id,</if>
+            <if test="ndtChargerId != null">ndt_charger_id,</if>
+            <if test="ndtDocumenterId != null">ndt_documenter_id,</if>
+            <if test="status != null">status,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="testCertNo != null">test_cert_no,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="projectNdtId != null">#{projectNdtId},</if>
+            <if test="projectId != null">#{projectId},</if>
+            <if test="deptId != null">#{deptId},</if>
+            <if test="ndtChargerId != null">#{ndtChargerId},</if>
+            <if test="ndtDocumenterId != null">#{ndtDocumenterId},</if>
+            <if test="status != null">#{status},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="testCertNo != null">#{testCertNo},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGasProjectNdt" parameterType="GasProjectNdt">
+        update gas_project_ndt
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="projectId != null">project_id = #{projectId},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="ndtChargerId != null">ndt_charger_id = #{ndtChargerId},</if>
+            <if test="ndtDocumenterId != null">ndt_documenter_id = #{ndtDocumenterId},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="testCertNo != null">test_cert_no = #{testCertNo},</if>
+        </trim>
+        where project_ndt_id = #{projectNdtId}
+    </update>
+
+        <!-- 逻辑删除：存在del_flag字段，使用逻辑删除 -->
+        <update id="deleteGasProjectNdtByProjectNdtId" parameterType="String">
+            update gas_project_ndt set del_flag = '2' where project_ndt_id = #{projectNdtId}
+        </update>
+
+        <update id="deleteGasProjectNdtByProjectNdtIds" parameterType="String">
+            update gas_project_ndt set del_flag = '2' where project_ndt_id in
+            <foreach item="projectNdtId" collection="array" open="(" separator="," close=")">
+                #{projectNdtId}
+            </foreach>
+        </update>
+</mapper>

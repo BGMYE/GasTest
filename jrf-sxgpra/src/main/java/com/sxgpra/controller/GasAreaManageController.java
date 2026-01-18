@@ -1,4 +1,4 @@
-package com.sxgpra.gasAreaManage.controller;
+package com.sxgpra.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
@@ -16,8 +16,8 @@ import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.enums.BusinessType;
-import com.sxgpra.gasAreaManage.domain.GasAreaManage;
-import com.sxgpra.gasAreaManage.service.IGasAreaManageService;
+import com.sxgpra.domain.GasAreaManage;
+import com.sxgpra.service.IGasAreaManageService;
 import com.ruoyi.common.utils.poi.ExcelMergeExportUtil;
 import com.ruoyi.common.core.page.TableDataInfo;
 

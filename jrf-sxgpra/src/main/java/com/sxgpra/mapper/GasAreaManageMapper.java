@@ -1,7 +1,7 @@
-package com.sxgpra.gasAreaManage.mapper;
+package com.sxgpra.mapper;
 
 import java.util.List;
-import com.sxgpra.gasAreaManage.domain.GasAreaManage;
+import com.sxgpra.domain.GasAreaManage;
 
 /**
  * 监检区域分配Mapper接口

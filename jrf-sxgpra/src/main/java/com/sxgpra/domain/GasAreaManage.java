@@ -1,4 +1,4 @@
-package com.sxgpra.gasAreaManage.domain;
+package com.sxgpra.domain;
 
 import com.ruoyi.common.annotation.Excels;
 import com.ruoyi.common.core.domain.entity.SysDept;

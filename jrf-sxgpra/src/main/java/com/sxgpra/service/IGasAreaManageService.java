@@ -1,7 +1,7 @@
-package com.sxgpra.gasAreaManage.service;
+package com.sxgpra.service;
 
 import java.util.List;
-import com.sxgpra.gasAreaManage.domain.GasAreaManage;
+import com.sxgpra.domain.GasAreaManage;
 
 /**
  * 监检区域分配Service接口

@@ -1,4 +1,4 @@
-package com.sxgpra.gasAreaManage.service.impl;
+package com.sxgpra.service.impl;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.sxgpra.gasAreaManage.mapper.GasAreaManageMapper;
-import com.sxgpra.gasAreaManage.domain.GasAreaManage;
-import com.sxgpra.gasAreaManage.service.IGasAreaManageService;
+import com.sxgpra.mapper.GasAreaManageMapper;
+import com.sxgpra.domain.GasAreaManage;
+import com.sxgpra.service.IGasAreaManageService;
 
 /**
  * 监检区域分配Service业务层处理
