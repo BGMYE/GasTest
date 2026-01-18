@@ -137,10 +137,10 @@
           <image-preview :src="scope.row.${javaField}" :width="50" :height="50"/>
         </template>
       </el-table-column>
-#elseif($column.list && "" != $column.dictType)
+#elseif($column.list && $column.htmlType == "checkbox")
       <el-table-column label="${comment}" align="center" prop="${javaField}">
         <template slot-scope="scope">
-#if($column.htmlType == "checkbox")
+#if("" != $column.dictType)
           <dict-tag :options="dict.type.${column.dictType}" :value="scope.row.${javaField} ? scope.row.${javaField}.split(',') : []"/>
 #else
           <dict-tag :options="dict.type.${column.dictType}" :value="scope.row.${javaField}"/>

@@ -56,6 +56,9 @@ public class GenTable extends BaseEntity
     /** 单双行 1单行 2双行*/
     private String rowType;
 
+    /** 表单布局（单列 双列 三列）*/
+    private String formColNum;
+
     /** 生成模块名 */
     @NotBlank(message = "生成模块名不能为空")
     private String moduleName;

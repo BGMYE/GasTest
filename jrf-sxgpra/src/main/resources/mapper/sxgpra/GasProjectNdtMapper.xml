@@ -26,17 +26,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectGasProjectNdtList" parameterType="GasProjectNdt" resultMap="GasProjectNdtResult">
         <include refid="selectGasProjectNdtVo"/>
         <where>  
-            <if test="projectNdtId != null  and projectNdtId != ''"> and project_ndt_id = #{projectNdtId}</if>
-            <if test="projectId != null  and projectId != ''"> and project_id = #{projectId}</if>
-            <if test="deptId != null  and deptId != ''"> and dept_id = #{deptId}</if>
-            <if test="ndtChargerId != null  and ndtChargerId != ''"> and ndt_charger_id = #{ndtChargerId}</if>
-            <if test="ndtDocumenterId != null  and ndtDocumenterId != ''"> and ndt_documenter_id = #{ndtDocumenterId}</if>
+            <if test="projectNdtId != null "> and project_ndt_id = #{projectNdtId}</if>
+            <if test="projectId != null "> and project_id = #{projectId}</if>
+            <if test="deptId != null "> and dept_id = #{deptId}</if>
+            <if test="ndtChargerId != null "> and ndt_charger_id = #{ndtChargerId}</if>
+            <if test="ndtDocumenterId != null "> and ndt_documenter_id = #{ndtDocumenterId}</if>
             <if test="status != null  and status != ''"> and status = #{status}</if>
             <if test="testCertNo != null  and testCertNo != ''"> and test_cert_no = #{testCertNo}</if>
         </where>
     </select>
     
-    <select id="selectGasProjectNdtByProjectNdtId" parameterType="String" resultMap="GasProjectNdtResult">
+    <select id="selectGasProjectNdtByProjectNdtId" parameterType="Long" resultMap="GasProjectNdtResult">
         <include refid="selectGasProjectNdtVo"/>
         where project_ndt_id = #{projectNdtId}
     </select>
@@ -92,7 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
         <!-- 逻辑删除：存在del_flag字段，使用逻辑删除 -->
-        <update id="deleteGasProjectNdtByProjectNdtId" parameterType="String">
+        <update id="deleteGasProjectNdtByProjectNdtId" parameterType="Long">
             update gas_project_ndt set del_flag = '2' where project_ndt_id = #{projectNdtId}
         </update>
 

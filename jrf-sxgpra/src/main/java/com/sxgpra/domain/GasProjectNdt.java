@@ -21,23 +21,23 @@ public class GasProjectNdt extends BaseEntity
 
     /** 项目检测单位ID */
     @Excel(name = "项目检测单位ID")
-    private String projectNdtId;
+    private Long projectNdtId;
 
     /** 项目ID */
     @Excel(name = "项目ID")
-    private String projectId;
+    private Long projectId;
 
     /** 机构ID */
     @Excel(name = "机构ID")
-    private String deptId;
+    private Long deptId;
 
     /** 检测单位项目分责人 */
     @Excel(name = "检测单位项目分责人")
-    private String ndtChargerId;
+    private Long ndtChargerId;
 
     /** 检测单位项目资料员 */
     @Excel(name = "检测单位项目资料员")
-    private String ndtDocumenterId;
+    private Long ndtDocumenterId;
 
     /** 状态 */
     @Excel(name = "状态")

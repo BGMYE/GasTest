@@ -27,7 +27,7 @@ public class GasProjectNdtServiceImpl implements IGasProjectNdtService
      * @return 项目检测单位
      */
     @Override
-    public GasProjectNdt selectGasProjectNdtByProjectNdtId(String projectNdtId)
+    public GasProjectNdt selectGasProjectNdtByProjectNdtId(Long projectNdtId)
     {
         return gasProjectNdtMapper.selectGasProjectNdtByProjectNdtId(projectNdtId);
     }
@@ -77,7 +77,7 @@ public class GasProjectNdtServiceImpl implements IGasProjectNdtService
      * @return 结果
      */
     @Override
-    public int deleteGasProjectNdtByProjectNdtIds(String[] projectNdtIds)
+    public int deleteGasProjectNdtByProjectNdtIds(Long[] projectNdtIds)
     {
         return gasProjectNdtMapper.deleteGasProjectNdtByProjectNdtIds(projectNdtIds);
     }
@@ -89,7 +89,7 @@ public class GasProjectNdtServiceImpl implements IGasProjectNdtService
      * @return 结果
      */
     @Override
-    public int deleteGasProjectNdtByProjectNdtId(String projectNdtId)
+    public int deleteGasProjectNdtByProjectNdtId(Long projectNdtId)
     {
         return gasProjectNdtMapper.deleteGasProjectNdtByProjectNdtId(projectNdtId);
     }

@@ -17,7 +17,7 @@ public interface GasProjectNdtMapper
      * @param projectNdtId 项目检测单位主键
      * @return 项目检测单位
      */
-    public GasProjectNdt selectGasProjectNdtByProjectNdtId(String projectNdtId);
+    public GasProjectNdt selectGasProjectNdtByProjectNdtId(Long projectNdtId);
 
     /**
      * 查询项目检测单位列表
@@ -49,7 +49,7 @@ public interface GasProjectNdtMapper
      * @param projectNdtId 项目检测单位主键
      * @return 结果
      */
-    public int deleteGasProjectNdtByProjectNdtId(String projectNdtId);
+    public int deleteGasProjectNdtByProjectNdtId(Long projectNdtId);
 
     /**
      * 批量删除项目检测单位
@@ -57,5 +57,5 @@ public interface GasProjectNdtMapper
      * @param projectNdtIds 需要删除的数据主键集合
      * @return 结果
      */
-    public int deleteGasProjectNdtByProjectNdtIds(String[] projectNdtIds);
+    public int deleteGasProjectNdtByProjectNdtIds(Long[] projectNdtIds);
 }

@@ -20,7 +20,7 @@
                         @keyup.enter="handleQuery"
                     />
                   </el-form-item>
-                #elseif(($column.htmlType == "select" || $column.htmlType == "radio") && "" != $dictType)
+                #elseif(($column.htmlType == "select" || $column.htmlType == "radio") && NULL  != $dictType)
                   <el-form-item label="${comment}" prop="${column.javaField}">
                     <el-select v-model="queryParams.${column.javaField}" placeholder="请选择${comment}" clearable>
                       <el-option
@@ -214,7 +214,7 @@
                               <editor v-model="form.${field}" :min-height="192" :readonly="ifView"/>
                             </el-form-item>
                           </el-col>
-                        #elseif($column.htmlType == "select" && "" != $dictType)
+                        #elseif($column.htmlType == "select" && NULL  != $dictType)
                             #if(${rowType} == "1")
                             <el-col :span="24">
                             #else
@@ -247,7 +247,7 @@
                             </el-select>
                           </el-form-item>
                         </el-col>
-                        #elseif($column.htmlType == "checkbox" && "" != $dictType)
+                        #elseif($column.htmlType == "checkbox" && NULL  != $dictType)
                             #if(${rowType} == "1")
                             <el-col :span="24">
                             #else
@@ -276,7 +276,7 @@
                             </el-checkbox-group>
                           </el-form-item>
                         </el-col>
-                        #elseif($column.htmlType == "radio" && "" != $dictType)
+                        #elseif($column.htmlType == "radio" && NULL  != $dictType)
                             #if(${rowType} == "1")
                             <el-col :span="24">
                             #else

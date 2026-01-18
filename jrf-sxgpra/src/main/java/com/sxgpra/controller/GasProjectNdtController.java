@@ -74,7 +74,7 @@ public class GasProjectNdtController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('sxgpra:GasProjectNdt:query')")
     @GetMapping(value = "/getInfo/{projectNdtId}")
-    public AjaxResult getInfo(@PathVariable("projectNdtId") String projectNdtId)
+    public AjaxResult getInfo(@PathVariable("projectNdtId") Long projectNdtId)
     {
         return success(gasProjectNdtService.selectGasProjectNdtByProjectNdtId(projectNdtId));
     }
@@ -107,7 +107,7 @@ public class GasProjectNdtController extends BaseController
     @PreAuthorize("@ss.hasPermi('sxgpra:GasProjectNdt:remove')")
     @Log(title = "项目检测单位", businessType = BusinessType.DELETE)
 	@DeleteMapping("/remove/{projectNdtIds}")
-    public AjaxResult remove(@PathVariable String[] projectNdtIds)
+    public AjaxResult remove(@PathVariable Long[] projectNdtIds)
     {
         return toAjax(gasProjectNdtService.deleteGasProjectNdtByProjectNdtIds(projectNdtIds));
     }
