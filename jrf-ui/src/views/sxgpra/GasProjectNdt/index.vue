@@ -109,7 +109,7 @@
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="GasProjectNdtList" @selection-change="handleSelectionChange">
+    <el-table stripe border v-loading="loading" :data="GasProjectNdtList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="项目检测单位ID" align="center" prop="projectNdtId"></el-table-column>
       <el-table-column label="项目ID" align="center" prop="projectId"></el-table-column>
@@ -117,8 +117,7 @@
       <el-table-column label="检测单位项目分责人" align="center" prop="ndtChargerId"></el-table-column>
       <el-table-column label="检测单位项目资料员" align="center" prop="ndtDocumenterId"></el-table-column>
       <el-table-column label="状态" align="center" prop="status"></el-table-column>
-      <el-table-column label="检测资质证书编号" align="center" prop="testCertNo">
-      </el-table-column>
+      <el-table-column label="检测资质证书编号" align="center" prop="testCertNo"></el-table-column>
       <el-table-column label="创建时间" align="center" prop="createTime" width="180">
                 <template #default="scope">
                     <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d}') }}</span>
@@ -160,7 +159,7 @@
     />
 
     <!-- 添加或修改项目检测单位对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+    <el-dialog v-drag-dialog="true" :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="项目检测单位ID" prop="projectNdtId">
           <el-input v-model="form.projectNdtId" placeholder="请输入项目检测单位ID" />
