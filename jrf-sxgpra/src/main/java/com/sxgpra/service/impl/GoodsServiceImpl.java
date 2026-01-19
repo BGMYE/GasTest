@@ -1,4 +1,4 @@
-package com.sxgpra.goods.service.impl;
+package com.sxgpra.service.impl;
 
 import java.util.List;
 

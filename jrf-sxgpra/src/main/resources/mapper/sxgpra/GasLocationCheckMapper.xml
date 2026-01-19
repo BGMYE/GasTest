@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxgpra.mapper.GasLocationCheckMapper">
+    
+    <resultMap type="GasLocationCheck" id="GasLocationCheckResult">
+        <result property="locationCheckId"    column="location_check_id"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="welderId"    column="welder_id"    />
+        <result property="manycode"    column="manycode"    />
+        <result property="locationtype"    column="locationtype"    />
+        <result property="photo"    column="photo"    />
+        <result property="location"    column="location"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectGasLocationCheckVo">
+        select location_check_id, project_id, welder_id, manycode, locationtype, photo, location, create_by, create_time, update_by, update_time from gas_location_check
+    </sql>
+
+    <select id="selectGasLocationCheckList" parameterType="GasLocationCheck" resultMap="GasLocationCheckResult">
+        <include refid="selectGasLocationCheckVo"/>
+        <where>  
+            <if test="projectId != null  and projectId != ''"> and project_id = #{projectId}</if>
+            <if test="welderId != null  and welderId != ''"> and welder_id = #{welderId}</if>
+            <if test="manycode != null  and manycode != ''"> and manycode = #{manycode}</if>
+            <if test="locationtype != null  and locationtype != ''"> and locationtype = #{locationtype}</if>
+            <if test="photo != null  and photo != ''"> and photo = #{photo}</if>
+            <if test="location != null  and location != ''"> and location = #{location}</if>
+        </where>
+    </select>
+    
+    <select id="selectGasLocationCheckByLocationCheckId" parameterType="String" resultMap="GasLocationCheckResult">
+        <include refid="selectGasLocationCheckVo"/>
+        where location_check_id = #{locationCheckId}
+    </select>
+
+    <insert id="insertGasLocationCheck" parameterType="GasLocationCheck" useGeneratedKeys="true" keyProperty="locationCheckId">
+        insert into gas_location_check
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="projectId != null">project_id,</if>
+            <if test="welderId != null">welder_id,</if>
+            <if test="manycode != null">manycode,</if>
+            <if test="locationtype != null">locationtype,</if>
+            <if test="photo != null">photo,</if>
+            <if test="location != null">location,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="projectId != null">#{projectId},</if>
+            <if test="welderId != null">#{welderId},</if>
+            <if test="manycode != null">#{manycode},</if>
+            <if test="locationtype != null">#{locationtype},</if>
+            <if test="photo != null">#{photo},</if>
+            <if test="location != null">#{location},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGasLocationCheck" parameterType="GasLocationCheck">
+        update gas_location_check
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="projectId != null">project_id = #{projectId},</if>
+            <if test="welderId != null">welder_id = #{welderId},</if>
+            <if test="manycode != null">manycode = #{manycode},</if>
+            <if test="locationtype != null">locationtype = #{locationtype},</if>
+            <if test="photo != null">photo = #{photo},</if>
+            <if test="location != null">location = #{location},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where location_check_id = #{locationCheckId}
+    </update>
+
+        <!-- 物理删除：不存在del_flag字段，使用物理删除 -->
+        <delete id="deleteGasLocationCheckByLocationCheckId" parameterType="String">
+            delete from gas_location_check where location_check_id = #{locationCheckId}
+        </delete>
+
+        <delete id="deleteGasLocationCheckByLocationCheckIds" parameterType="String">
+            delete from gas_location_check where location_check_id in
+            <foreach item="locationCheckId" collection="array" open="(" separator="," close=")">
+                #{locationCheckId}
+            </foreach>
+        </delete>
+</mapper>
