@@ -69,7 +69,7 @@ public class ${ClassName}Controller extends BaseController
         return getDataTable(list);
     }
     #elseif($table.tree)
-        public AjaxResult list(${ClassName} ${className})
+        public AjaxResult listAll(${ClassName} ${className})
         {
             List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
             return success(list);

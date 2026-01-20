@@ -490,8 +490,12 @@ function getMenuAllCheckedKeys() {
 function submitForm() {
   proxy.$refs["roleRef"].validate(valid => {
     if (valid) {
+      
       if (form.value.roleId != undefined) {
         form.value.menuIds = getMenuAllCheckedKeys();
+        // 将布尔值转为 0/1
+        form.value.menu_check_strictly = form.value.menu_check_strictly ? '1' : '0'
+        form.value.dept_check_strictly = form.value.dept_check_strictly ? '1' : '0'
         updateRole(form.value).then(response => {
           proxy.$modal.msgSuccess("修改成功");
           open.value = false;

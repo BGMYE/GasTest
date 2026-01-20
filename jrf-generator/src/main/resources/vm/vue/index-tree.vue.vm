@@ -20,7 +20,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-#elseif(($column.htmlType == "select" || $column.htmlType == "radio") && NULL  != $dictType)
+#elseif(($column.htmlType == "select" || $column.htmlType == "radio") && $dictType)
       <el-form-item label="${comment}" prop="${column.javaField}">
         <el-select v-model="queryParams.${column.javaField}" placeholder="请选择${comment}" clearable>
           <el-option
@@ -198,7 +198,7 @@
         <el-form-item label="${comment}">
           <editor v-model="form.${field}" :min-height="192"/>
         </el-form-item>
-#elseif($column.htmlType == "select" && NULL  != $dictType)
+#elseif($column.htmlType == "select" && $dictType)
         <el-form-item label="${comment}" prop="${field}">
           <el-select v-model="form.${field}" placeholder="请选择${comment}">
             <el-option
@@ -219,7 +219,7 @@
             <el-option label="请选择字典生成" value="" />
           </el-select>
         </el-form-item>
-#elseif($column.htmlType == "checkbox" && NULL  != $dictType)
+#elseif($column.htmlType == "checkbox" && $dictType)
         <el-form-item label="${comment}" prop="${field}">
           <el-checkbox-group v-model="form.${field}">
             <el-checkbox
@@ -236,7 +236,7 @@
             <el-checkbox>请选择字典生成</el-checkbox>
           </el-checkbox-group>
         </el-form-item>
-#elseif($column.htmlType == "radio" && NULL  != $dictType)
+#elseif($column.htmlType == "radio" && $dictType)
         <el-form-item label="${comment}" prop="${field}">
           <el-radio-group v-model="form.${field}">
             <el-radio
@@ -284,17 +284,14 @@
 
 <script>
 import { list${BusinessName}, get${BusinessName}, del${BusinessName}, add${BusinessName}, update${BusinessName} } from "@/api/${moduleName}/${businessName}";
-import Treeselect from "@riophae/vue-treeselect";
-import "@riophae/vue-treeselect/dist/vue-treeselect.css";
+
 
 export default {
   name: "${BusinessName}",
 #if(${dicts} != '')
   dicts: [${dicts}],
 #end
-  components: {
-    Treeselect
-  },
+
   data() {
     return {
       // 遮罩层

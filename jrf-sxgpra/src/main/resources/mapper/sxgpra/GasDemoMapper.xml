@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxgpra.mapper.GasDemoMapper">
+    
+    <resultMap type="GasDemo" id="GasDemoResult">
+        <result property="demoId"    column="demo_id"    />
+        <result property="demoCode"    column="demo_code"    />
+        <result property="demoName"    column="demo_name"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="parentId"    column="parent_id"    />
+    </resultMap>
+
+    <sql id="selectGasDemoVo">
+        select demo_id, demo_code, demo_name, create_by, create_time, update_by, update_time, parent_id from gas_demo
+    </sql>
+
+    <select id="selectGasDemoList" parameterType="GasDemo" resultMap="GasDemoResult">
+        <include refid="selectGasDemoVo"/>
+        <where>  
+            <if test="demoCode != null  and demoCode != ''"> and demo_code = #{demoCode}</if>
+            <if test="demoName != null  and demoName != ''"> and demo_name like concat('%', #{demoName}, '%')</if>
+            <if test="parentId != null  and parentId != ''"> and parent_id = #{parentId}</if>
+        </where>
+    </select>
+    
+    <select id="selectGasDemoByDemoId" parameterType="String" resultMap="GasDemoResult">
+        <include refid="selectGasDemoVo"/>
+        where demo_id = #{demoId}
+    </select>
+
+    <insert id="insertGasDemo" parameterType="GasDemo" useGeneratedKeys="true" keyProperty="demoId">
+        insert into gas_demo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="demoCode != null">demo_code,</if>
+            <if test="demoName != null">demo_name,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="parentId != null">parent_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="demoCode != null">#{demoCode},</if>
+            <if test="demoName != null">#{demoName},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="parentId != null">#{parentId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGasDemo" parameterType="GasDemo">
+        update gas_demo
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="demoCode != null">demo_code = #{demoCode},</if>
+            <if test="demoName != null">demo_name = #{demoName},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="parentId != null">parent_id = #{parentId},</if>
+        </trim>
+        where demo_id = #{demoId}
+    </update>
+
+        <!-- 物理删除：不存在del_flag字段，使用物理删除 -->
+        <delete id="deleteGasDemoByDemoId" parameterType="String">
+            delete from gas_demo where demo_id = #{demoId}
+        </delete>
+
+        <delete id="deleteGasDemoByDemoIds" parameterType="String">
+            delete from gas_demo where demo_id in
+            <foreach item="demoId" collection="array" open="(" separator="," close=")">
+                #{demoId}
+            </foreach>
+        </delete>
+</mapper>

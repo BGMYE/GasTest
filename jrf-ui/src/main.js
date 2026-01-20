@@ -53,6 +53,7 @@ import 'highlight.js/styles/stackoverflow-light.css'
 import hljs from "highlight.js/lib/core";
 import hljsVuePlugin from "@highlightjs/vue-plugin";
 //import "highlight.js/lib/common"; //单一加载
+
 //按需引入语言
 import javascript from "highlight.js/lib/languages/javascript";
 import java from "highlight.js/lib/languages/java";

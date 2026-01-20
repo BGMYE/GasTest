@@ -146,7 +146,7 @@ public class SysRole extends BaseEntity
 
     public void setMenuCheckStrictly(boolean menuCheckStrictly)
     {
-        this.menuCheckStrictly = menuCheckStrictly;
+        this.menuCheckStrictly = menuCheckStrictly ? "1" : "0";
     }
 
     public boolean isDeptCheckStrictly()
